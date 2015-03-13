@@ -1,6 +1,7 @@
 ---
 date: 2013-05-29
 title: VNC сервер в Ubuntu 13.04
+slug: vnc-server-ubuntu
 tags:
  - vnc
  - ubuntu

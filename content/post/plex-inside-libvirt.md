@@ -1,6 +1,7 @@
 ---
 date: 2015-02-02
 title: Plex внутри libvirt
+slug: plex-inside-libvirt
 tags:
  - plex
  - libvirt

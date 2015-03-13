@@ -1,0 +1,3 @@
+[submodule "themes/beg"]
+	path = themes/beg
+	url = https://github.com/dim0627/hugo_theme_beg.git

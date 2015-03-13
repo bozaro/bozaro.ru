@@ -1,23 +1,21 @@
-BaseUrl: "http://example.com"
-LanguageCode: "en-us"
-Title: "Aglaus"
+BaseUrl: "http://www.bozaro.ru"
+LanguageCode: "ru-ru"
+Title: "Bozaro. Кладезь бредовых мыслей"
 
 Params:
-  Author: "Your name."
+  Author: "Artem V. Navrotskiy"
   DateForm: "Mon, Jan 2, 2006"
-  GoogleAnalyticsUserID: "Your ID."
-  Facebook: "Your ID."
-  Twitter: "Your ID."
-  Github: "Your ID."
+  GoogleAnalyticsUserID: "UA-8091129-1"
+  Facebook: "bozaro"
+  Twitter: "bozaro"
+  Github: "bozaro"
   ShowRelatedPost: True
-  Disqus: "Your Disqus."
-  SyntaxHighlightTheme: "solarized_dark.min.css"
+  SyntaxHighlightTheme: "solarized_light.min.css"
 
 Indexes:
   tag: "tags"
 
 permalinks:
-  post: /blog/:year/:month/:day/:title/
+  post: /:year/:month/:day/:slug/
 
 MetadataFormat: "yaml"
-
