@@ -1,5 +1,5 @@
 ---
-date: 2016-02-06
+date: 2016-04-16
 title: Настройка оффлайн дедупликации для Btrfs
 slug: btrfs-deduplication
 tags:
