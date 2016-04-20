@@ -49,36 +49,51 @@ sudo apt install wine1.8 winetricks
 ```
 
 ### Установка .NET внутри Wine
+Для начала, нужно установить .NET внутри Wine.
+
+#### Используем в Wine 32-х битное окружений
+.NET 4.0 в Wine поддерживается только в 32-х битном окружении.
+
+Для его использования нужно задать переменные окружения:
+```bash
+# Используем 32-х битное окружение
+export WINEARCH=win32
+# Используем отдельный каталог для Wine
+export WINEPREFIX=$HOME/.wine-i686/
+```
+
+#### Добавляем в контейнер поддержку GUI
+Для утсановки .NET нужен GUI.
+
+Самый простой способ получить доступ к GUI на удаленной машине: подключиться
+к ней по SSH с поддержкой X-сервера.
+
+Это делается командой вида:
+```bash
+ssh -X remote-host
+```
+
+К сожалению, в контейнере по-умолчанию это не дало эффекта, так как
+там не установлен `xauth`.
+
+Для исправления ситуации нужно установить в контейнер `xauth`:
+```bash
+sudo apt install xauth
+```
+
+#### Собственно установка .NET
+Сама уставнока .NET выполняется командой:
+```
+winetricks dotnet40
+```
+
+При этом она попросит вручную скачать ряд файлов от Microsoft, но трудностей
+это у меня не вызвало.
 
 ### Исправление ошибки: The specified user does not have a valid profile
 ```
 System.IO.FileLoadException: The specified user does not have a valid profile.  Unable to load 'WixSharp, Version=1.0.34.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2'.
 File name: 'WixSharp, Version=1.0.34.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2'
-   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
-   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
-   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
-   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
-   at System.Reflection.Assembly.Load(String assemblyString)
-   at System.Runtime.Serialization.FormatterServices.LoadAssemblyFromString(String assemblyName)
-   at System.Reflection.MemberInfoSerializationHolder..ctor(SerializationInfo info, StreamingContext context)
-   at System.AppDomain.add_AssemblyResolve(ResolveEventHandler value)
-   at WixSharp.Utils.ExecuteInTempDomain[T](Func`2 action)
-   at WixSharp.Utils.OriginalAssemblyFile(String file)
-   at WixSharp.Compiler.ResolveClientAsm(String asmName, String outDir)
-   at WixSharp.Compiler.PackageManagedAsm(String asm, String nativeDll, String[] refAssemblies, String outDir, String configFilePath, Nullable`1 platform, Boolean embeddedUI, String batchFile)
-   at WixSharp.Compiler.ProcessCustomActions(Project wProject, XElement product)
-   at WixSharp.Compiler.GenerateWixProj(Project project)
-   at WixSharp.Compiler.BuildWxs(Project project, String path, OutputType type)
-   at WixSharp.Compiler.BuildWxs(Project project, OutputType type)
-   at WixSharp.Compiler.Build(Project project, String path, OutputType type)
-   at WixSharp.Compiler.Build(Project project, OutputType type)
-   at WixSharp.Compiler.BuildMsi(Project project)
-   at Script.Main(String[] args)
-
-WRN: Assembly binding logging is turned OFF.
-To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
-Note: There is some performance penalty associated with assembly bind failure logging.
-To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
 ```
 
 ### Исправление ошибки: Unhandled exception 0xe0434352
@@ -92,10 +107,6 @@ System.IO.IOException: ������ ��ࠬ���.
 wine: Unhandled exception 0xe0434352 in thread 9 at address 0x7b83ac1c (thread 0009), starting debugger...
 err:winediag:nulldrv_CreateWindow Application tried to create a window, but no driver could be loaded.
 err:winediag:nulldrv_CreateWindow Make sure that your X server is running and that $DISPLAY is set correctly.
-Unhandled exception: 0xe0434352 in 32-bit code (0x7b83ac1c).
-Register dump:
- CS:0023 SS:002b DS:002b ES:002b FS:0063 GS:006b
- EIP:7b83ac1c ESP:0032efe4 EBP:0032f068 EFLAGS:00000216(   - --  I   -A-P- )
- EAX:7b827a79 EBX:00000010 ECX:0032f010 EDX:0032f0cc
- ESI:00000000 EDI:0012d810
 ```
+
+#### Отключаем валидацию .msi-пакетов
