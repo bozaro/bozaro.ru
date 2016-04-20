@@ -76,14 +76,14 @@ ssh -X remote-host
 К сожалению, в контейнере по-умолчанию это не дало эффекта, так как
 там не установлен `xauth`.
 
-Для исправления ситуации нужно установить в контейнер `xauth`:
+Для исправления ситуации нужно установить `xauth` в контейнер:
 ```bash
 sudo apt install xauth
 ```
 
 #### Собственно установка .NET
 Сама уставнока .NET выполняется командой:
-```
+```bash
 winetricks dotnet40
 ```
 
@@ -96,9 +96,16 @@ System.IO.FileLoadException: The specified user does not have a valid profile.  
 File name: 'WixSharp, Version=1.0.34.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2'
 ```
 
+Эта ошибка у меня возникла из-за использования ManagedAction.
+
+Лечится добавлением магического ключа в реестр:
+```bash
+wine reg add "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList\\S-1-5-21-0-0-0-1000"
+```
+
 ### Исправление ошибки: Unhandled exception 0xe0434352
 ```
-System.IO.IOException: ������ ��ࠬ���.
+System.IO.IOException: Неверный параметр.
 
    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
    at System.IO.__Error.WinIOError()
@@ -109,4 +116,33 @@ err:winediag:nulldrv_CreateWindow Application tried to create a window, but no d
 err:winediag:nulldrv_CreateWindow Make sure that your X server is running and that $DISPLAY is set correctly.
 ```
 
-#### Отключаем валидацию .msi-пакетов
+Эта ошибка трепала нервы дольше остальных.
+
+Основная проблема в том, что проявлялась она только при сборке из Jenkins. 
+При подключении по SSH она не воспроизводилась. Я подозреваю, что причиной
+данной проблемы является отсутсвие терминала присборке из Jenkins.
+
+Полечилась она очень просто: достаточно было обновить файл `cscs.exe`, входящий
+в комплект WixSharp.
+
+Так как у `cscs.exe` и `WixSharp` один автор, я попросил его обновить `cscs.exe`
+(https://wixsharp.codeplex.com/workitem/110).
+
+В результате, с WixSharp v1.0.35.0 эта проблема более не актуальна.
+
+### Исправление ошибки: light.exe : error LGHT0216
+```
+light.exe : error LGHT0216 : An unexpected Win32 exception with error code 0x65B occurred: Сбой функции
+```
+
+Эта ошибка происходит из-за того, что Wine все-таки не до конца совместим с
+Windows. В данном конкретном случае Wix не может проверить создаваемый пакет.
+
+Для обхода этой ошибки можно просто отключить проверку корректности пакетов,
+передав `light.exe` параметр `-sval`.
+
+В случае с WixSharp это выглядит примерно так:
+```c#
+Project project = new Project("Test");
+project.LightOptions = "-sval";
+```
