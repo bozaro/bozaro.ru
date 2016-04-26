@@ -14,9 +14,9 @@ menu: main
 
 Для неё нужен пинок снаружи.
 
-Для этого можно воспользоваться утилитой dupremove (https://github.com/markfasheh/duperemove):
+Для этого можно воспользоваться утилитой dupremove (<https://github.com/markfasheh/duperemove>):
 ```
 #!/bin/sh
-/usr/local/bin/duperemove -dr /var /usr /home
+/usr/local/sbin/duperemove -dr /var /usr /home
 ```
 <!--more-->
