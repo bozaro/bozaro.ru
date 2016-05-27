@@ -21,5 +21,6 @@ menu: main
 
 Финальный патч: https://bitbucket.org/chromiumembedded/cef/pull-requests/61/make-all-libcefso-fuctions-except-of-cef_/diff
 
+Беда с tcmalloc: https://bitbucket.org/chromiumembedded/cef/issues/1827/tcmalloc-should-be-disabled-in-linux-osx
 
 <!--more-->
