@@ -19,5 +19,7 @@ menu: main
 
 Волшебный патч на libstdc++: https://gcc.gnu.org/bugzilla/attachment.cgi?id=17216&action=diff
 
+Финальный патч: https://bitbucket.org/chromiumembedded/cef/pull-requests/61/make-all-libcefso-fuctions-except-of-cef_/diff
+
 
 <!--more-->
