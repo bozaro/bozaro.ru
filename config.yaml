@@ -1,16 +1,30 @@
 BaseURL: "//www.bozaro.ru/"
 LanguageCode: "ru-ru"
-Title: "Bozaro. Кладезь бредовых мыслей"
+Title: "Bozaro. Экспериментариум"
 
 Params:
-  Author: "Artem V. Navrotskiy"
-  DateForm: "Mon, Jan 2, 2006"
-  GoogleAnalyticsUserID: "UA-8091129-1"
-  Facebook: "bozaro"
-  Twitter: "bozaro"
-  Github: "bozaro"
-  ShowRelatedPost: True
-  SyntaxHighlightTheme: "solarized_light.min.css"
+  title: "Bozaro"
+  subtitle: "Artem V. Navrotskiy"  
+  blogtitle: "Экспериментариум"
+
+  highlight: true
+
+  # Render the rotating globe in the sidebar
+  showglobe: true
+
+  # Google Analytics
+  analytics: "UA-8091129-1"
+  metrika: "792360"
+
+  # Sidebar profile picture
+  profilepic: "img/bozaro.png"
+  favicon: "img/favicon.png"
+
+  # Social buttons for sidebar
+  github: "https://github.com/bozaro"
+  twitter: "https://twitter.com/bozaro"
+  linkedin: "https://www.linkedin.com/in/bozaro"
+  email: "bozaro@yandex.ru"
 
 Indexes:
   tag: "tags"
