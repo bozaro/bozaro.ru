@@ -57,7 +57,7 @@ LD_PRELOAD=../libcef.so ./UE4Editor ...
 ```
 > can be used.
 
-### Пересборка l`libcef` без `tcmalloc`
+### Пересборка `libcef` без `tcmalloc`
 
 Естественным действием после этого была попытка пересобрать `libcef` без `tcmalloc`.
 
