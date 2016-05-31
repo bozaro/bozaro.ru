@@ -7,10 +7,8 @@ node ('linux') {
 
   stage 'Build'
   sh '''#!/bin/bash -ex
-HUGO=0.15
-mkdir -p .build
-tar -xzvf .jenkins/distrib/hugo_${HUGO}_linux_amd64.tar.gz -C .build
-.build/hugo_${HUGO}_linux_amd64/hugo_${HUGO}_linux_amd64 -t beg
+rm -fR public/
+./build.sh
 tar -cvzf .build/content.tgz -C public/ .
 '''
   archive '.build/content.tgz'
