@@ -27,17 +27,17 @@ parser.add_argument("--output", dest="output", type=str,
 args = parser.parse_args()
 projectUrl = "https://api.github.com/repos/EpicGames/UnrealEngine"
 
-cacheDir = os.path.join(os.path.dirname(sys.argv[0]), "pulls")
+cacheDir = os.path.join(os.path.dirname(sys.argv[0]), ".pulls")
 if not os.path.exists(cacheDir):
     os.mkdir(cacheDir, 0o755)
 
 print ("Downloading pull requests information (pages)...")
 page = 0
-pageSize = 10
+pageSize = 50
 pages = []
 while True:
     page += 1
-    path = os.path.join(cacheDir, "page.%d.json" % page)
+    path = os.path.join(cacheDir, "page.%04d.json" % page)
     pages.append(path)
     if os.path.exists(path):
         f = open(path, "rt", encoding="utf-8")
@@ -65,7 +65,7 @@ for page in pages:
     f.close()
     for pr in j:
         id = pr["number"]
-        path = os.path.join(cacheDir, "pr.%d.json" % id)
+        path = os.path.join(cacheDir, "pr.%05d.json" % id)
         pullRequests.append(path)
         if os.path.exists(path):
             continue
