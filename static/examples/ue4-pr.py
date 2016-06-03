@@ -86,6 +86,7 @@ o.write("\t".join([
     "user",
     "avatar",
     "commits",
+    "title",
 ]))
 o.write("\n")
 for path in pullRequests:
@@ -97,6 +98,7 @@ for path in pullRequests:
         j["user"]["login"],
         j["user"]["avatar_url"],
         str(j["commits"]),
+        j["title"],
     ])
     o.write(line)
     o.write("\n")
