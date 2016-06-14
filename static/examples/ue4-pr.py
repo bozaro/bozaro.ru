@@ -4,6 +4,7 @@ import requests, os, os.path
 import argparse
 
 import sys
+import csv
 
 
 def write_file(path, content):
@@ -11,6 +12,10 @@ def write_file(path, content):
     f.write(content)
     f.close()
     os.rename(path + "~", path)
+
+
+def escape(c):
+    return c.replace("\0", "")
 
 
 parser = argparse.ArgumentParser(description='Simple pull requets statistics')
@@ -21,8 +26,8 @@ parser.add_argument("--password", dest="password", type=str,
                     required=True,
                     help="GitHub password")
 parser.add_argument("--output", dest="output", type=str,
-                    default="result.txt",
-                    help="Output file name (default: %s)" % os.environ.get("result.txt"))
+                    default="result.csv",
+                    help="Output file name (default: %s)" % os.environ.get("result.csv"))
 
 args = parser.parse_args()
 projectUrl = "https://api.github.com/repos/EpicGames/UnrealEngine"
@@ -79,28 +84,25 @@ for page in pages:
         write_file(path, r.content)
 
 print ("Read information from pull requests...")
-o = open(args.output, "wt", encoding="utf-8")
-o.write("\t".join([
+f = open(args.output, "wt", encoding="utf-8")
+o = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+o.writerow([
     "id",
     "created_at",
     "user",
     "avatar",
     "commits",
     "title",
-]))
-o.write("\n")
+])
 for path in pullRequests:
     f = open(path, "rt", encoding="utf-8")
     j = json.loads(f.read(), "utf-8")
-    line = "\t".join([
+    o.writerow([
         str(j["number"]),
         j["created_at"],
-        j["user"]["login"],
+        escape(j["user"]["login"]),
         j["user"]["avatar_url"],
         str(j["commits"]),
-        j["title"],
+        escape(j["title"]),
     ])
-    o.write(line)
-    o.write("\n")
-    print (line)
-o.close()
+f.close()
