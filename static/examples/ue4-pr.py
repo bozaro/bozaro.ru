@@ -25,9 +25,15 @@ parser.add_argument("--user", dest="username", type=str,
 parser.add_argument("--password", dest="password", type=str,
                     required=True,
                     help="GitHub password")
+parser.add_argument("--limit", dest="limit", type=int,
+                    default=2500,
+                    help="GitHub pull request count (default: %d)" % 2500)
 parser.add_argument("--output", dest="output", type=str,
                     default="result.csv",
                     help="Output file name (default: %s)" % os.environ.get("result.csv"))
+parser.add_argument("--total", dest="total", type=str,
+                    default="total.csv",
+                    help="Total file name (default: %s)" % os.environ.get("total.csv"))
 
 args = parser.parse_args()
 projectUrl = "https://api.github.com/repos/EpicGames/UnrealEngine"
@@ -94,15 +100,32 @@ o.writerow([
     "commits",
     "title",
 ])
+total = {}
 for path in pullRequests:
     f = open(path, "rt", encoding="utf-8")
     j = json.loads(f.read(), "utf-8")
+    login = j["user"]["login"]
+    if int(j["number"]) > args.limit: continue
     o.writerow([
         str(j["number"]),
         j["created_at"],
-        escape(j["user"]["login"]),
+        escape(login),
         j["user"]["avatar_url"],
         str(j["commits"]),
         escape(j["title"]),
+    ])
+    total[login] = total.get(login, 0) + 1
+f.close()
+
+f = open(args.total, "wt", encoding="utf-8")
+o = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+o.writerow([
+    "user",
+    "total",
+])
+for login in total:
+    o.writerow([
+        login,
+        total[login],
     ])
 f.close()
