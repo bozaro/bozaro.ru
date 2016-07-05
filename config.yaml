@@ -14,7 +14,7 @@ Params:
 
   # Google Analytics
   analytics: "UA-8091129-1"
-  metrika: "792360"
+  metrika: 792360
 
   # Sidebar profile picture
   profilepic: "img/bozaro.png"
