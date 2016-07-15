@@ -125,7 +125,7 @@ o.writerow([
     "user",
     "total",
 ])
-for login in total:
+for login in sorted(total):
     o.writerow([
         login,
         avatar[login],
