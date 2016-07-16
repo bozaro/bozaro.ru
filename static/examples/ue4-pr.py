@@ -25,9 +25,12 @@ parser.add_argument("--user", dest="username", type=str,
 parser.add_argument("--password", dest="password", type=str,
                     required=True,
                     help="GitHub password")
+parser.add_argument("--trashold", dest="trashold", type=int,
+                    default=100,
+                    help="Commit count trashold (default: %d)" % 100)
 parser.add_argument("--limit", dest="limit", type=int,
                     default=2600,
-                    help="GitHub pull request count (default: %d)" % 2500)
+                    help="GitHub pull request count (default: %d)" % 2600)
 parser.add_argument("--output", dest="output", type=str,
                     default="result.csv",
                     help="Output file name (default: %s)" % os.environ.get("result.csv"))
@@ -102,6 +105,7 @@ o.writerow([
 ])
 total = {}
 avatar = {}
+non_trash = 0
 for path in pullRequests:
     f = open(path, "rt", encoding="utf-8")
     j = json.loads(f.read(), "utf-8")
@@ -116,7 +120,9 @@ for path in pullRequests:
         escape(j["title"]),
     ])
     avatar[login] = j["user"]["avatar_url"]
-    total[login] = total.get(login, 0) + 1
+    if j["commits"] < args.trashold:
+        non_trash += 1
+        total[login] = total.get(login, 0) + 1
 f.close()
 
 f = open(args.total, "wt", encoding="utf-8")
@@ -124,6 +130,7 @@ o = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
 o.writerow([
     "user",
     "avatar",
+    "commits",
     "total",
 ])
 for login in sorted(total):
@@ -131,5 +138,6 @@ for login in sorted(total):
         login,
         avatar[login],
         total[login],
+        non_trash,
     ])
 f.close()
