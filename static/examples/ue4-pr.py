@@ -101,6 +101,7 @@ o.writerow([
     "title",
 ])
 total = {}
+avatar = {}
 for path in pullRequests:
     f = open(path, "rt", encoding="utf-8")
     j = json.loads(f.read(), "utf-8")
@@ -114,6 +115,7 @@ for path in pullRequests:
         str(j["commits"]),
         escape(j["title"]),
     ])
+    avatar[login] = j["user"]["avatar_url"]
     total[login] = total.get(login, 0) + 1
 f.close()
 
@@ -126,6 +128,7 @@ o.writerow([
 for login in total:
     o.writerow([
         login,
+        avatar[login],
         total[login],
     ])
 f.close()
