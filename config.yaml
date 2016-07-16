@@ -1,8 +1,9 @@
-BaseURL: "//www.bozaro.ru/"
-LanguageCode: "ru-ru"
-Title: "Bozaro. Экспериментариум"
+baseURL: "//www.bozaro.ru/"
+languageCode: "ru-ru"
+title: "Bozaro. Экспериментариум"
+theme: hugo-geo
 
-Params:
+params:
   title: "Bozaro"
   subtitle: "Artem V. Navrotskiy"  
   blogtitle: "Экспериментариум"
@@ -26,10 +27,10 @@ Params:
   linkedin: "https://www.linkedin.com/in/bozaro"
   email: "bozaro@yandex.ru"
 
-Indexes:
+indexes:
   tag: "tags"
 
 permalinks:
   post: /:year/:month/:day/:slug/
 
-MetadataFormat: "yaml"
+metadataFormat: "yaml"
