@@ -26,7 +26,7 @@ parser.add_argument("--password", dest="password", type=str,
                     required=True,
                     help="GitHub password")
 parser.add_argument("--limit", dest="limit", type=int,
-                    default=2500,
+                    default=2600,
                     help="GitHub pull request count (default: %d)" % 2500)
 parser.add_argument("--output", dest="output", type=str,
                     default="result.csv",
@@ -123,6 +123,7 @@ f = open(args.total, "wt", encoding="utf-8")
 o = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
 o.writerow([
     "user",
+    "avatar",
     "total",
 ])
 for login in sorted(total):
