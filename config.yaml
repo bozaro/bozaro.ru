@@ -33,4 +33,5 @@ indexes:
 permalinks:
   post: /:year/:month/:day/:slug/
 
+disable404: true
 metadataFormat: "yaml"
