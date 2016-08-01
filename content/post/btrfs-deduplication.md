@@ -15,7 +15,7 @@ menu: main
 Для неё нужен пинок снаружи.
 
 Для этого можно воспользоваться утилитой dupremove (<https://github.com/markfasheh/duperemove>):
-```
+```bash
 #!/bin/sh
 /usr/local/sbin/duperemove -dr /var /usr /home
 ```

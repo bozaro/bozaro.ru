@@ -83,7 +83,7 @@ python automate-git.py --download-dir=/mnt/storage/cef/cef.2357 --branch=2357 --
 
 В стеке привлек внимание следующий фрагмент:
 
-```c++
+```cpp
 #0  0x00007f46d8ca1f27 in arena_run_tree_insert (rbtree=0x7f45f4006a60, node=0x7f45f4000048) at src/arena.c:69
 #1  0x00007f46d8caad35 in arena_bin_runs_insert (run=<optimized out>, bin=0x7f45f4006a30) at src/arena.c:1330
 #2  arena_bin_lower_run (bin=0x7f45f4006a30, run=<optimized out>, chunk=<optimized out>, arena=<optimized out>) at src/arena.c:1868

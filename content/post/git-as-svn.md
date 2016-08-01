@@ -131,7 +131,7 @@ menu: main
  1. Распаковать архив.
  1. Запустить сервер.
 
-    ```
+    ```bash
     java -jar git-as-svn.jar --config config.example --show-config
     ```
 
