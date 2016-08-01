@@ -28,4 +28,4 @@ _main:
 nasm -fwin32 nodeps.asm && "%VS120COMNTOOLS%\..\..\VC\bin\link.exe" /subsystem:console /nodefaultlib /entry:main nodeps.obj
 ```
 
-В результате получился аналог Unix-команды `true` размером ровно 1Kb.
+В результате получился аналог Unix-команды `true` размером ровно 1Kb: [nodeps.zip](/minimal-exe/nodeps.zip).
