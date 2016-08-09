@@ -1,5 +1,5 @@
 ---
-date: 2016-07-31
+date: 2016-08-09
 title: Работа с клавиатурой в играх
 slug: keyboard
 tags:
