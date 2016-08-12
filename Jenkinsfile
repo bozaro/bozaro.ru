@@ -16,7 +16,7 @@ tar -cvzf .build/content.tgz -C public/ .
   if (env.BRANCH_NAME == 'master') {
     stage 'Publish'
     sshagent(credentials: ['0d1e35cd-a719-4ab9-afed-fb5d9c8ff9af']) {
-      sh 'rsync -e "ssh -o StrictHostKeyChecking=no" -rlvz --delete-after public/ deploy@bozaro.ru:bozaro.ru/'
+      sh 'rsync -e "ssh -o StrictHostKeyChecking=no" -rlvzc --delete-after public/ deploy@bozaro.ru:bozaro.ru/'
     }
   }
 }
