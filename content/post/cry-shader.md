@@ -1,5 +1,5 @@
 ---
-date: 2016-07-16
+date: 2016-10-17
 title: CryEngine и шейдера
 slug: cry-shader
 tags:
