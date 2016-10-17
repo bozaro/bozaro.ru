@@ -3,3 +3,11 @@ img.left {
     margin-right: 8pt;
     margin-bottom: 4pt;
 }
+
+article > dl dd {
+    padding: 0 0 4pt 32pt;
+}
+
+.epigraph {
+    padding-left: 50%;
+}
