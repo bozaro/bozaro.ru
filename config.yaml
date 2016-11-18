@@ -29,6 +29,9 @@ params:
   linkedin: "https://www.linkedin.com/in/bozaro"
   email: "bozaro@yandex.ru"
 
+social:
+  twitter: Bozaro
+
 indexes:
   tag: "tags"
 
