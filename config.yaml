@@ -1,4 +1,4 @@
-baseURL: "https://www.bozaro.ru/"
+baseURL: "https://bozaro.ru/"
 languageCode: "ru"
 title: "Bozaro. Экспериментариум"
 theme: hugo-geo
