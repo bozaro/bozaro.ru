@@ -37,3 +37,4 @@ permalinks:
 
 disable404: true
 metadataFormat: "yaml"
+disqusShortname: "http-www-bozaro-ru"
