@@ -3,6 +3,9 @@ languageCode: "ru-ru"
 title: "Bozaro. Экспериментариум"
 theme: hugo-geo
 
+blackfriday:
+  sourceRelativeLinksEval: true
+
 params:
   title: "Bozaro"
   subtitle: "Artem V. Navrotskiy"  
@@ -35,6 +38,7 @@ indexes:
 permalinks:
   post: /:year/:month/:day/:slug/
 
+relativeURLs: true
 disable404: true
 metadataFormat: "yaml"
 disqusShortname: "http-www-bozaro-ru"
