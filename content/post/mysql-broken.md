@@ -94,11 +94,11 @@ DATETIME:
  - Диапазон значений: от `0000-01-01 00:00:00` до `9999-12-31 23:59:59`.
 
 ### UPDATE
-В MySQL операция UPDATE не соответвует стандарту SQL92.
+В MySQL операция UPDATE не соответвует стандарту [SQL92](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt).
 
-Речь идет про абзац (http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt):
+Речь идет про абзац:
 
-13.9 <update statement: positioned>
+**13.9 &lt;update statement: positioned&gt;**
 ```text
 6) The <value expression>s are effectively evaluated before updat-
    ing the object row. If a <value expression> contains a reference
