@@ -66,6 +66,8 @@ menu: main
 ALTER TABLE foo ADD COLUMN id INT PRIMARY KEY AUTO_INCREMENT;
 ```
 
+При этом о том, что данные между мастером у репликой разошлись, узнаёшь, когда реплика встаёт колом: нельзя применить изменения из-за того, что **данные давно разошлись**.
+
 Ко всем чудесам добавляется еще тот момент, что в отличие от мастера, слейв вынужден выполнять все запросы по очереди. Из-за этого слейв должен иметь более производительное оборудование, чем мастер...
 
 У Царёва есть замечательный доклад на эту тему: https://habrahabr.ru/company/oleg-bunin/blog/313594/
@@ -151,3 +153,10 @@ ROLLBACK;
 UPDATE big_table SET ver = ver + 1 WHERE id = 123;
 ```
 Будет DEADLOCK, если ROLLBACK не закончится в течение 300 сек.
+
+## Ссылки
+
+Еще немного о проблемах MySQL:
+
+ * https://grimoire.ca/mysql/choose-something-else
+ * https://habrahabr.ru/company/oleg-bunin/blog/313594/
