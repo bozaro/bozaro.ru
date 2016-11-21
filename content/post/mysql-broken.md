@@ -7,11 +7,11 @@ tags:
 categories:
  - Programming
 images:
- - /img/mysql-broken/mysql-fragile-v2.png
+ - /img/mysql-broken/mysql-fragile-v3.png
 menu: main
 ---
 
-<img alt="Двуликий сервер" class="right" src="../../../../img/mysql-broken/mysql-fragile.png">
+<img alt="Двуликий сервер" class="right" src="../../../../img/mysql-broken/mysql-fragile-v3.png">
 Несколько раз на разных проектах мне приходилось объяснять, почему MySQL является далеко не лучшим выбором.
 
 Мне несколько надоело каждый раз воспроизводить список проблем MySQL по памяти и я решил написать этот пост.
