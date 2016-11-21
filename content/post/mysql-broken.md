@@ -7,7 +7,7 @@ tags:
 categories:
  - Programming
 images:
- - /img/mysql-broken/mysql-fragile.png
+ - /img/mysql-broken/mysql-fragile-v2.png
 menu: main
 ---
 
