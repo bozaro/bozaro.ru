@@ -4,6 +4,12 @@ img.left {
     margin-bottom: 4pt;
 }
 
+img.right {
+    float: right;
+    margin-left: 8pt;
+    margin-bottom: 4pt;
+}
+
 article > dl dd {
     padding: 0 0 4pt 32pt;
 }
