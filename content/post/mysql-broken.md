@@ -195,6 +195,14 @@ UPDATE big_table SET ver = ver + 1 WHERE id = 123;
 ```
 Будет DEADLOCK, если ROLLBACK не закончится в течение 300 сек.
 
+## Ловушки конфигурирования
+
+### lower_case_table_names
+В MySQL есть изумительный параметр [`lower_case_table_names`](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_lower_case_table_names),
+который приводит имена всех таблиц в нижний регистр и по-умолчанию включён под Windows.
+
+В результате, если взять базу, у которой имена таблиц не в нижнем регистре, и развернуть её под Windows, то перенести эту базу обратно под Linux уже не получится.
+
 ## Ссылки
 
 Еще немного о проблемах MySQL:
