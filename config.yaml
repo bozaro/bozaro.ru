@@ -18,7 +18,7 @@ params:
   metrika: 792360
 
   # Sidebar profile picture
-  profilepic: "img/bozaro.png"
+  profilepic: "img/bozaro.jpg"
   favicon: "img/favicon.png"
   css:
   - "/css/bozaro.css"
