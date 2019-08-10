@@ -1,9 +1,9 @@
-#!/bin/bash -ex
+#!/bin/sh -ex
 cd `dirname $0`
 set +e
 HUGO=`which hugo`
 set -e
-if [ "${HUGO}" == "" ]; then
+if [ "${HUGO}" = "" ]; then
   HUGO_VER=0.17
   if [ ! -f .build/hugo_${HUGO_VER}_linux_amd64/hugo_${HUGO_VER}_linux_amd64 ]; then
     mkdir -p .build

@@ -1,22 +1,38 @@
-node ('linux') {
-  stage 'Checkout'
-  checkout scm
-  sh 'git reset --hard'
-  sh 'git clean -ffdx'
-  sh 'git submodule update --init'
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile.build'
+        }
+    }
 
-  stage 'Build'
-  sh '''#!/bin/bash -ex
+    stages {
+        stage('Cleanup') {
+            steps {
+                sh "git clean -fdx"
+                sh 'git submodule update --init'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''#!/bin/sh -ex
 rm -fR public/
 ./build.sh
 tar -cvzf .build/content.tgz -C public/ .
 '''
-  archive '.build/content.tgz'
+                archive '.build/content.tgz'
+            }
+        }
 
-  if (env.BRANCH_NAME == 'master') {
-    stage 'Publish'
-    sshagent(credentials: ['0d1e35cd-a719-4ab9-afed-fb5d9c8ff9af']) {
-      sh 'rsync -e "ssh -o StrictHostKeyChecking=no" -rlvzc --delete-after public/ deploy@bozaro.ru:bozaro.ru/'
+        stage('Publish (master)') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sshagent(credentials: ['web-deploy']) {
+                    sh 'rsync -e "ssh -o StrictHostKeyChecking=no" -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/'
+                }
+            }
+        }
     }
-  }
 }
