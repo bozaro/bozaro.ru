@@ -19,7 +19,7 @@ menu: main
 
 После некоторого копания я пришел к следующему файлу `init.groovy.d/extralogging.groovy`:
 
-```
+```groovy
 import jenkins.model.Jenkins
 
 import java.util.logging.FileHandler
