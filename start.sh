@@ -1,3 +1,3 @@
 #!/bin/bash -ex
 cd `dirname $0`
-./hugo.sh server -w -b http://localhost/
+./hugo.sh server --buildDrafts=true -w -b http://localhost/
