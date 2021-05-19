@@ -10,7 +10,7 @@ spec:
           # Добавляем паузу после завершения nginx
           args:
             - "-c"
-            - "nginx -g \"daemon off;\"; sleep 60"
+            - "nginx -g \"daemon off;\" && sleep 60"
           # К сожалению, sh не пробрасывает SIGTERM в дочерний процесс
           lifecycle:
             preStop:
