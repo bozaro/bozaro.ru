@@ -11,6 +11,7 @@ categories:
 menu: main
 ---
 
+<img alt="QWERY+AZERTY клавиатура" class="right" style="max-width: 50%;" src="../../../../img/k8s-headless-service-pod-disappeared/and-silence-in-response.png">
 Мы столкнулись с достаточно занятным поведением при работе с Headless-сервисом в Kubernetes. В нашем случае проблема
 возникла с mongos, но она актуальна для любого Headless-сервиса.
 
@@ -88,14 +89,14 @@ Headless-сервисы полезны, когда приложение само
 Эту ситуацию можно легко воспроизвести в MiniKube на примере nginx.
 
 Для этого надо понадобится headless Service:
-{{< code file="hpa-vs-headless-service/service.yml" language="yaml" label="service.yml" >}}
+{{< code file="k8s-headless-service-pod-disappeared/service.yml" language="yaml" label="service.yml" >}}
 
 И тестовая утилита:
-{{< code file="hpa-vs-headless-service/dialer.go" language="go" label="dialer.go" >}}
+{{< code file="k8s-headless-service-pod-disappeared/dialer.go" language="go" label="dialer.go" >}}
 
 Запустим тестовую утилиту для подключения к сервису nginx по 80-му порту. Она будет выводить результат попытки
 подключиться к сервису (пока не успешный, так как сервис смотрит в никуда):
-{{< code file="hpa-vs-headless-service/example.sh" language="sh" label="example.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/example.sh" language="sh" label="example.sh" >}}
 
 Вывести она должна что-то вида:
 
@@ -109,7 +110,7 @@ Headless-сервисы полезны, когда приложение само
 ### Простой Deployment без задержек
 
 Добавим в сервис Deployment:
-{{< code file="hpa-vs-headless-service/nginx.yml" language="yaml" label="nginx.yml" >}}
+{{< code file="k8s-headless-service-pod-disappeared/nginx.yml" language="yaml" label="nginx.yml" >}}
 
 Параметр `replicas` для эксперимента равен единице, чтобы не скакать между IP-адресами.
 
@@ -117,7 +118,7 @@ Headless-сервисы полезны, когда приложение само
 мешать.
 
 И сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/restart.sh" language="sh" label="restart.sh" >}}
 
 От этой команды произойдёт перевыкатка Deployment. При этом важно отметить, что схема выкатки
 по умолчанию: поднять новый Pod и только затем погасить старый Pod. То есть всегда будет запущен как минимум один Pod.
@@ -146,13 +147,13 @@ Headless-сервисы полезны, когда приложение само
 
 Добавим в Deployment паузу после завершения сервиса, чтобы вместо долгого таймаута получать быстрый "connection
 refused":
-{{< code file="hpa-vs-headless-service/nginx-add-shutdown.sh" language="sh" label="nginx-add-shutdown.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/nginx-add-shutdown.sh" language="sh" label="nginx-add-shutdown.sh" >}}
 
 Эта пауза нужна только при корректном завершении Pod (в этом случае процесс получает `SIGTERM`). Если процесс
 завершается, к примеру, по Out Of Memory или Segmentation fault, то её быть не должно.
 
 И еще раз сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/restart.sh" language="sh" label="restart.sh" >}}
 
 В выводе тестовой утилиты мы увидим примерно следующее (комментарии добавлены отдельно):
 
@@ -174,10 +175,10 @@ refused":
 ### Добавляем задержку перед остановкой Pod.
 
 Добавим в Deployment паузу перед завершением сервиса, чтобы сервис отвечал, пока адрес Pod не покинет кэш на клиенте:
-{{< code file="hpa-vs-headless-service/nginx-add-gracefull.sh" language="sh" label="nginx-add-gracefull.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/nginx-add-gracefull.sh" language="sh" label="nginx-add-gracefull.sh" >}}
 
 И еще раз сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
+{{< code file="k8s-headless-service-pod-disappeared/restart.sh" language="sh" label="restart.sh" >}}
 
 В выводе тестовой утилиты мы увидим примерно следующее (комментарии добавлены отдельно):
 
