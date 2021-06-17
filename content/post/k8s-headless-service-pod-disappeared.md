@@ -1,5 +1,5 @@
 ---
-date: 2021-02-12
+date: 2021-06-17
 draft: true
 title: "Kubernetes Headless Service: А если Pod исчез?"
 slug: k8s-headless-service-pod-disappeared
