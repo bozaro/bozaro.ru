@@ -6,12 +6,12 @@ spec:
     spec:
       containers:
         - name: nginx
-          # Добавляем задержку перед оставнокой nginx
+          # Добавляем задержку перед остановкой nginx
           lifecycle:
             preStop:
               exec:
                 command: ["sh", "-c", "sleep 60 && nginx -s stop"]
-      # Увеличиваем время, которое отводится на остановку Pod-а перед
+      # Увеличиваем время, которое отводится на остановку Pod перед
       # его безусловным завершением
       terminationGracePeriodSeconds: 180
 '
