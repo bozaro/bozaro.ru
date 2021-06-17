@@ -117,10 +117,10 @@ Headless-сервисы полезны, когда приложение само
 мешать.
 
 И сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/update.sh" language="sh" label="update.sh" >}}
+{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
 
-При изменении аннотации Pod произойдёт перевыкатка Deployment. При этом важно отметить, что схема выкатки
-по умолчанию: поднять новые Pod и только затем погасить старые Pod. То есть всегда будет запущен как минимум один Pod.
+От этой команды произойдёт перевыкатка Deployment. При этом важно отметить, что схема выкатки
+по умолчанию: поднять новый Pod и только затем погасить старый Pod. То есть всегда будет запущен как минимум один Pod.
 
 В выводе тестовой утилиты мы увидим примерно следующее (комментарии добавлены отдельно):
 
@@ -152,7 +152,7 @@ refused":
 завершается, к примеру, по Out Of Memory или Segmentation fault, то её быть не должно.
 
 И еще раз сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/update.sh" language="sh" label="update.sh" >}}
+{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
 
 В выводе тестовой утилиты мы увидим примерно следующее (комментарии добавлены отдельно):
 
@@ -177,7 +177,7 @@ refused":
 {{< code file="hpa-vs-headless-service/nginx-add-gracefull.sh" language="sh" label="nginx-add-gracefull.sh" >}}
 
 И еще раз сделаем «обновление» Deployment:
-{{< code file="hpa-vs-headless-service/update.sh" language="sh" label="update.sh" >}}
+{{< code file="hpa-vs-headless-service/restart.sh" language="sh" label="restart.sh" >}}
 
 В выводе тестовой утилиты мы увидим примерно следующее (комментарии добавлены отдельно):
 
