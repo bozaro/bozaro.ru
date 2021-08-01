@@ -13,6 +13,7 @@ draft: true
 
 Мы собираем зависимости для нашего тестового окружения в Docker-образ, что оказалось очень удобно. Но недавно у нас
 появился разработчик с MacBook M1 и резко встал вопрос о возможности поддержки двух платформ.
+<!--more-->
 
 ## Особенности поведения Docker на MacBook M1
 
@@ -245,12 +246,4 @@ docker buildx build \
 
 Например:
 
-```Dockerfile
-FROM alpine AS prepare
-...
-
-FROM alpine
-...
-COPY --from=prepare /bin/application /bin/application
-...
-```
+{{< code file="docker-buildx/Dockerfile" language="Dockerfile" label="Dockerfile" >}}
