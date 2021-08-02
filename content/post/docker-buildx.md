@@ -208,12 +208,11 @@ docker buildx build --push --progress=plain --platform linux/amd64 --platform li
 Таким образом при запуске агента мы выполняем команды вида:
 
 ```sh
-(
-  export DOCKER_CONFIG="$(mktemp -d)"
-  docker buildx create --name cibuilder --driver docker-container --driver-opt image=dockerhub-proxy.example.com/moby/buildkit:buildx-stable-1
-  docker buildx inspect cibuilder --bootstrap
-  rm -fR "$DOCKER_CONFIG"
-)
+export DOCKER_CONFIG="$(mktemp -d)"
+docker buildx create --name cibuilder --driver docker-container --driver-opt image=dockerhub-proxy.example.com/moby/buildkit:buildx-stable-1
+docker buildx inspect cibuilder --bootstrap
+rm -fR "$DOCKER_CONFIG"
+export -n DOCKER_CONFIG
 ```
 
 Это запускает сборщик образов на старте агента с нужными нам параметрами.
