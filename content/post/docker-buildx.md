@@ -120,7 +120,7 @@ sudo apt-get install -y qemu-user-static
 echo -e "FROM aarch64/debian:stretch-slim\nRUN echo 'it works'" | docker build -
 ```
 
-Я исправлял эту ситуацию по инструкции с сайта https://github.com/computermouth/qemu-static-conf#how-do-i-install:
+Я исправлял эту ситуацию по [инструкции](https://github.com/computermouth/qemu-static-conf#how-do-i-install):
 
 ```sh
 git clone https://github.com/computermouth/qemu-static-conf.git
