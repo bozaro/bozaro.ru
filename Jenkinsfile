@@ -1,36 +1,38 @@
 pipeline {
     agent {
         dockerfile {
-            filename 'Dockerfile.build'
+            filename "Dockerfile"
+            dir "jenkins"
         }
     }
 
     stages {
-        stage('Cleanup') {
+        stage("Cleanup") {
             steps {
                 sh "git clean -fdx"
-                sh 'git submodule update --init'
+                sh "git submodule update --init"
+                sh "git lfs pull"
             }
         }
 
-        stage('Build') {
+        stage("Build") {
             steps {
-                sh '''#!/bin/sh -ex
+                sh """#!/bin/sh -ex
 rm -fR public/
 ./build.sh
 tar -cvzf .build/content.tgz -C public/ .
-'''
-                archive '.build/content.tgz'
+"""
+                archive ".build/content.tgz"
             }
         }
 
-        stage('Publish (master)') {
+        stage("Publish (master)") {
             when {
-                branch 'master'
+                branch "master"
             }
             steps {
                 sshagent(credentials: ['web-deploy']) {
-                    sh 'rsync -e "ssh -o StrictHostKeyChecking=no" -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/'
+                    sh "rsync -e 'ssh -o StrictHostKeyChecking=no' -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/"
                 }
             }
         }
