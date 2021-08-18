@@ -10,7 +10,7 @@ categories:
 menu: main
 ---
 
-<img alt="QWERY+AZERTY клавиатура" class="right" style="max-width: 50%;" src="../../../../img/k8s-headless-service-pod-disappeared/and-silence-in-response.png">
+<img alt="Картинка для привлечения внимания :)" class="right" style="max-width: 50%;" src="../../../../img/k8s-headless-service-pod-disappeared/and-silence-in-response.png">
 Мы столкнулись с достаточно занятным поведением при работе с Headless-сервисом в Kubernetes. В нашем случае проблема
 возникла с mongos, но она актуальна для любого Headless-сервиса.
 
