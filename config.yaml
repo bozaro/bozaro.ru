@@ -63,7 +63,7 @@ languages:
     languageName: English
     title: Bozaro. Experimentarium
     weight: 2
-    disqusShortname: "http-www-bozaro-en"
+    disqusShortname: "bozaro-me"
     params:
       subtitle: "Artem V. Navrotskiy"
       header: "Experimentarium"
