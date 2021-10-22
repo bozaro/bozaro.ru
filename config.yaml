@@ -1,13 +1,8 @@
-baseURL: "https://bozaro.ru/"
-languageCode: "ru"
-title: "Bozaro. Экспериментариум"
 theme: hugo-geo
 paginate: 10
 enableGitInfo: true
 params:
   title: "Bozaro"
-  subtitle: "Artem V. Navrotskiy"  
-  header: "Экспериментариум"
 
   # Render the rotating globe in the sidebar
   showglobe: true
@@ -53,7 +48,26 @@ markup:
   highlight:
     style: vs
 
+languages:
+  ru:
+    baseURL: "https://bozaro.ru/"
+    languageName: Русский
+    title: Bozaro. Экспериментариум
+    weight: 1
+    disqusShortname: "http-www-bozaro-ru"
+    params:
+      subtitle: "Артем В. Навроцкий"
+      header: "Экспериментариум"
+  en:
+    baseURL: "https://bozaro.me/"
+    languageName: English
+    title: Bozaro. Experimentarium
+    weight: 2
+    disqusShortname: "http-www-bozaro-en"
+    params:
+      subtitle: "Artem V. Navrotskiy"
+      header: "Experimentarium"
+
 relativeURLs: true
 disable404: true
 metadataFormat: "yaml"
-disqusShortname: "http-www-bozaro-ru"
