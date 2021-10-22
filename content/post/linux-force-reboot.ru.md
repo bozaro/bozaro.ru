@@ -15,10 +15,10 @@ menu: main
 <!--more-->
 Выполнить это можно командой:
 
-    echo 1 > /proc/sys/kernel/sysrq
-    echo b > /proc/sysrq-trigger
+    echo 1 | sudo tee /proc/sys/kernel/sysrq
+    echo b | sudo tee /proc/sysrq-trigger
 
 Аналогичная конструкций для выключения компьютера:
 
-    echo 1 > /proc/sys/kernel/sysrq
-    echo o > /proc/sysrq-trigger
+    echo 1 | sudo tee /proc/sys/kernel/sysrq
+    echo o | sudo tee /proc/sysrq-trigger
