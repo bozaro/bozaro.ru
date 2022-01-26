@@ -71,3 +71,4 @@ languages:
 relativeURLs: true
 disable404: true
 metadataFormat: "yaml"
+enableRobotsTXT: true
