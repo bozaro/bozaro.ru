@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "helper",
+    srcs = ["helper.go"],
+    importpath = "github.com/bozaro/testify-example/example/helper",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_stretchr_testifyy//require"],
+)
