@@ -1,8 +1,9 @@
 {{- $name := .Get "file" }}
 {{- $file := printf "static/%s" $name | readFile }}
 {{- $lang := .Get "language" }}
-<figure>{{ (printf "```%s\n%s\n```" $lang ( strings.ReplaceRE "\\s+$" "" $file )) | markdownify }}
+<figure>
     {{- with .Get "label" }}
-    <figcaption><a href="/{{ $name }}">{{ . }}</a></figcaption>
+    <figcaption><a href="/{{ $name }}">{{ . }}</a>:</figcaption>
     {{- end }}
+    {{- (printf "```%s\n%s\n```" $lang ( strings.ReplaceRE "\\s+$" "" $file )) | markdownify -}}
 </figure>
