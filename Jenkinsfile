@@ -31,8 +31,8 @@ tar -cvzf .build/content.tgz -C public/ .
                 branch "master"
             }
             steps {
-                sshagent(credentials: ['web-deploy']) {
-                    sh "rsync -e 'ssh -o StrictHostKeyChecking=no' -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/"
+                withCredentials([sshUserPrivateKey(credentialsId: 'web-deploy', keyFileVariable: 'SSH_KEY')]) {
+                    sh 'rsync -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/'
                 }
             }
         }
