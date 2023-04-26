@@ -1,3 +1,6 @@
 [submodule "themes/hugo-geo"]
 	path = themes/hugo-geo
 	url = https://github.com/bozaro/hugo-geo.git
+[submodule "static/go-stack-trace"]
+	path = static/go-stack-trace
+	url = https://github.com/bozaro/go-stack-trace
