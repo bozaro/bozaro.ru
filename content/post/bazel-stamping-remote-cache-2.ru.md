@@ -23,8 +23,8 @@ menu: main
 с `remote build`.
 <!--more-->
 
-Подробнее об этой проблеме я писал ранее в статье <a href="/2023/03/09/bazel-stamping-remote-cache/">Bazel, stamping,
-remote cache.</a>
+Подробнее об этой проблеме я писал ранее в статье
+[Bazel, stamping, remote cache]({{< ref "bazel-stamping-remote-cache.md" >}}).
 
 # Что такое stamping?
 
