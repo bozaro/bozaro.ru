@@ -89,7 +89,7 @@ rules {
     mnemonic: "Example"
   }
   transform {
-    omitted_inputs: "^bazel-out/volatile-status\\\\.txt$"
+    omitted_inputs: "^bazel-out/volatile-status\\.txt$"
   }
 }
 ```
