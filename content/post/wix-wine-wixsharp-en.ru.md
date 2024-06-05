@@ -16,7 +16,7 @@ menu: main
 
 One of my pet projects (https://github.com/bozaro/octobuild) used .msi
 packages for Windows installation. And not to keep Windows builder, I
-sat down and figured out how to assemble under Windows.
+sat down and figured out how to assemble under Linux.
 <!--more-->
 ### MSI packaging tools
 To build the .msi-package I use Wix (http://wixtoolset.org/).
