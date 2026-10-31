@@ -18,6 +18,8 @@ steps:
   - name: build
     image: docker.bozaro.ru/ci/${DRONE_REPO}
     commands:
+      - git submodule update --init --recursive
+      - git lfs pull
       - rm -fR public/
       - ./build.sh
   - name: publish
