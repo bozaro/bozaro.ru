@@ -4,7 +4,7 @@ set +e
 HUGO=""
 set -e
 if [ "${HUGO}" = "" ]; then
-  HUGO_VER=0.82.1
+  HUGO_VER=0.169.0
   if [ ! -f .build/hugo_${HUGO_VER}_linux_amd64/hugo_${HUGO_VER}_linux_amd64 ]; then
     mkdir -p .jenkins/distrib
     HUGO_TGZ=.jenkins/distrib/hugo_${HUGO_VER}_Linux-64bit.tar.gz

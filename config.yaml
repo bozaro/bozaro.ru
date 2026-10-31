@@ -2,8 +2,6 @@ theme: hugo-geo
 paginate: 10
 enableGitInfo: true
 params:
-  title: "Bozaro"
-
   # Render the rotating globe in the sidebar
   showglobe: true
 
@@ -20,8 +18,6 @@ params:
   # Social buttons for sidebar
   email: "bozaro@yandex.ru"
   socialbuttons:
-  - faicon: "twitter"
-    url: "https://twitter.com/bozaro"
   - faicon: "linkedin"
     url: "https://linkedin.com/in/bozaro"
 
@@ -31,9 +27,6 @@ params:
   navlinks:
   - name: Blog
     url: ""
-
-social:
-  twitter: Bozaro
 
 indexes:
   tag: "tags"
@@ -51,19 +44,23 @@ markup:
 languages:
   ru:
     baseURL: "https://bozaro.ru/"
-    languageName: Русский
+    label: Русский
     title: Bozaro. Экспериментариум
     weight: 1
-    disqusShortname: "http-www-bozaro-ru"
+    services:
+      disqus:
+        shortname: "http-www-bozaro-ru"
     params:
       subtitle: "Артем В. Навроцкий"
       header: "Экспериментариум"
   en:
     baseURL: "https://bozaro.me/"
-    languageName: English
+    label: English
     title: Bozaro. Experimentarium
     weight: 2
-    disqusShortname: "bozaro-me"
+    services:
+      disqus:
+        shortname: "bozaro-me"
     params:
       subtitle: "Artem V. Navrotskiy"
       header: "Experimentarium"

@@ -5,7 +5,7 @@
 ## Сборка и запуск
 
 - Hugo **не установлен** в системе — используется wrapper `./hugo.sh`, который сам скачивает
-  pinned-версию (0.82.1, tarball лежит в git LFS в `.jenkins/distrib/`) в `.build/`.
+  pinned-версию (0.169.0, tarball лежит в git LFS в `.jenkins/distrib/`) в `.build/`.
 - Локальная сборка сайта: `./build.sh` (прогон с draft'ами + финальный прогон + gzip статики),
   результат в `public/`.
 - Локальный dev-сервер: `./start.sh` (http://localhost/, с draft'ами и watch).
