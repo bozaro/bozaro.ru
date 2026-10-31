@@ -1,0 +1,34 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      context: .jenkins
+      repo: docker.bozaro.ru/ci/${DRONE_REPO}
+      cache_from: docker.bozaro.ru/ci/${DRONE_REPO}
+      dockerfile: .jenkins/Dockerfile
+      registry: docker.bozaro.ru
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+  - name: build
+    image: docker.bozaro.ru/ci/${DRONE_REPO}
+    commands:
+      - rm -fR public/
+      - ./build.sh
+  - name: publish
+    image: docker.bozaro.ru/ci/${DRONE_REPO}
+    commands:
+      - echo "$SSH_KEY" > /tmp/deploy_key
+      - chmod 600 /tmp/deploy_key
+      - rsync -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" -rlvzc --no-owner --no-group --delete-after public/ deploy@ivy.bozaro.ru:bozaro.ru/
+    environment:
+      SSH_KEY:
+        from_secret: web_deploy_key
+    when:
+      branch:
+        - master
